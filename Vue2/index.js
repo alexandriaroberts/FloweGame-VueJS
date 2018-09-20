@@ -36,7 +36,7 @@ var app5 = new Vue({
       this.message = this.message
         .split("")//This will split the string in words
         .reverse()//This will reverse it
-        .join("");//You ahve to join if you don't want ' in the string
+        .join("");//You git push have to join if you don't want ' in the string
     }
   }
 });
