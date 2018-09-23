@@ -13,6 +13,8 @@
 <body>
     <div id="app">
         <h1>Events</h1>
+        <!-- When using events the directice v-on is used and you can use the type by using :
+        after. -->
         <button v-on:click="add(1)">Add a year</button>
         <button v-on:click="subtract(1)">Subtract a year</button>
         <button v-on:dblclick="add(10)">Add 10 years</button>
@@ -20,6 +22,25 @@
         <p>My age is {{ age }}</p>
         <div id="canvas" v-on:mousemove="updateXY">{{ x }},{{ y }}</div>
     </div>
+    <!-- The event handling with keys is pretty simple. For event modifiers, you can access it by using . 
+        and add additional functionality to event listeners. Common keys are given on the website-->
+    <div id="app-2">
+       <h1> Keyboard Events</h1>
+       <label>Name</label>
+       <input type="text" v-on:keyup.enter="logName">
+       <label>Age</label>
+       <input type="text" v-on:keyup.enter="logAge">
+    </div>
+    <!-- Two way date binding: -->
+    <div id="app-3">
+            <h1> Two way data binding</h1>
+            <label>Name</label>
+            <input type="text" v-model="name">
+            <span>{{ name }}</span>
+            <label>Age</label>
+            <input type="text" v-model="age">
+            <span>{{ age }}</span>
+         </div>
     <script src="index.js"></script>
 </body>
 
