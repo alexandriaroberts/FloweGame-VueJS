@@ -41,6 +41,18 @@
             <input type="text" v-model="age">
             <span>{{ age }}</span>
          </div>
+         <!-- Computed Properties: The end result of methods are the same as computed properties.
+        But with computed properties are cached based on their dependencies. It will only check when it's
+    dependiencies have changed.-->
+         <div id="app-4">
+             <h1>Computed Properties</h1>
+             <button v-on:click="a++">Add to A</button>
+             <button v-on:click="b++">Add to B</button>
+             <p>A- {{ a }}</p>
+             <p>B- {{ b }}</p>
+             <p>Age + A = {{ agePlusA }}</p>
+             <p>Age + B = {{ agePlusB }}</p>
+         </div>
     <script src="index.js"></script>
 </body>
 
