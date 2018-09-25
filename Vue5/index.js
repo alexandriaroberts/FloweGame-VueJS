@@ -22,3 +22,15 @@ var app2 = new Vue({
     }
   }
 });
+
+var app2 = new Vue({
+  el: "#app-3",
+  data: {
+    games: ["cards", "chess", "backgamon"],
+    players: [
+      { name: "Lex", Score: 100 },
+      { name: "John", Score: 10 }, 
+      { name: "Jake", Score: 50 },
+    ]
+  }
+});
