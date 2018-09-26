@@ -30,15 +30,18 @@
             <span>Hello</span>
         </div>
     </div>
+    <!--Like in another example of v-for is used to render a list of items from an array.-->
     <div id="app-3">
         <h1>Looping through lists</h1>
-        <!-- <ul>
+        <ul>
             <li v-for="game in games">{{ game }}</li>
         </ul>
         <ul>
             <li v-for="(player, index) in players">{{ index }} . {{ player.name }} - {{ player.Score }}</li>
-        </ul> -->
+        </ul>
+        <!-- Template serves as an invisible wrapper in Vue-->
         <template v-for="player in players">
+            <!-- Cycling through single objec and getting it's key and value-->
             <div v-for="(val, key) in player">
                 <p> {{ key }}- {{ val }}</p>
             </div>
