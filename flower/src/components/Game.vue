@@ -1,6 +1,6 @@
 <template>
   <div class="game-heading">
-    <h1>{{ msg }}</h1> 
+    <h1>{{ heading }}</h1> 
     
   </div>
 </template>
@@ -12,7 +12,7 @@
 export default {
   name: 'Game',
   props: {
-    msg: String
+    heading: String
   }
 }
 </script>

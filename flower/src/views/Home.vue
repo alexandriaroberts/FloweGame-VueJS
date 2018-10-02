@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-       <Game msg="Pick The Flowers"/>
+       <Game heading="Pick The Flowers!"/>
   </div>
 </template>
 
