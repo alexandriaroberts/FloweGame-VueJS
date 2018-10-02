@@ -1,11 +1,12 @@
 <template>
-  <div class="game-wrapper">
-    <h1>{{ msg }}</h1>
-   
-    <div> </div>
- 
+  <div class="game-heading">
+    <h1>{{ msg }}</h1> 
+    
   </div>
 </template>
+
+
+
 
 <script>
 export default {
