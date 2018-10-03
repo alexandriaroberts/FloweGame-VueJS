@@ -2,6 +2,7 @@
   <div class="home">
        <Game heading="Pick The Flowers!"/>
   </div>
+  
 </template>
 
 <script>
