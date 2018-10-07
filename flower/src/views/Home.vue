@@ -1,7 +1,9 @@
 <template>
   <div class="home">
        <Game heading="Pick The Flowers!"/>
+     
   </div>
+ 
   
 </template>
 
@@ -12,7 +14,8 @@ import Game from '@/components/Game.vue'
 export default {
   name: 'home',
   components: {
-    Game
+    Game,
+    flowers
   }
 }
 </script>
