@@ -22,6 +22,6 @@ body{
   grid-auto-flow: column;
 }
 
-#flowerList li {
+#flower li {
   list-style: none;
 }
