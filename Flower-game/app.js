@@ -1,34 +1,33 @@
+Vue.component('flower-component', {
+  data() {
+   return {
+     score: 0
+   }
+  },
+  props: ["id", "image"],
+  template: "#flower-component"
+});
+
+/* Array of items */
 var app = new Vue({
   el: "#app",
-  data: {
-    mousemove: function(event) {
-      flower.style.position = 'absolute';
-      flower.style.zIndex = 100;
-      document.body.append(flower);
-      moveAt(event.pageX, event.pageY);
-
-      function moveAt(pageX, pageY){
-        flower.style.left= pageX - flower.offsetWidth / 10 + 'px';
-        flower.style.top= pageY - flower.offsetWidth / 10 + 'px';
+  data() {
+    return {
+    flowers: [
+      {
+        position: "flower1",
+        image: "./img/flower-1.png"
+      },
+      {
+        id: "flower2",
+        image: "./img/flower-2.png"
+      },
+      {
+        id: "flower3",
+        image: "./img/flower-3.png"
       }
-
-      function onMouseMove(event){
-        moveAt(event.pageX, event.pageY);
-      }
-
-      document.addEventListener('mousemove', onMouseMove);
-
-      this.flower.onmouseup = function(){
-        document.removeEventListener('mousemove', onMouseMove);
-        flower.onmouseup = null;
-      };
-
-      this.flower.ondragstart = function() {
-        return false;
-      };
-
-      
-    }
-     
-}
-})
+    ]
+   
+  };
+ }
+});
