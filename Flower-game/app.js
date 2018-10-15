@@ -7,6 +7,10 @@ Vue.component("flower-component", {
   methods: {
     countScore: function() {
       this.score += 10;
+    },
+    /*Todo: Work out a way to get the random flower here in Vue */
+    getRandomFlower: function(){
+      
     }
   },
   props: ["id", "image"],
