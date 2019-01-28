@@ -1,0 +1,7 @@
+#app {
+    width: 100vw;
+    height: 100vh;
+    padding: 15vmin;
+    font-size: 30px;
+    transition: 0.2s background-color ease;
+  }

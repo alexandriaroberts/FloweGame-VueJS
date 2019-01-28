@@ -17,11 +17,7 @@ body{
     #d3cce3
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-.flower-main{
-  padding-top: 10px;
-  display:flex;
-  justify-content: center; 
-}
-.id{
-  padding: 40px;
+img {
+  width: 150px;
+  height: 200px;
 }
