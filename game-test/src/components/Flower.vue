@@ -4,7 +4,7 @@
          v-bind:src="image.url"
          :key="index" 
          v-on:click="aFlowerClicked"
-         v-bind:style="position"/>
+         v-bind:style="{background: background, top: top, left: left, position: position}"/>
   
   </div>
 </template>
@@ -13,18 +13,21 @@
 export default {
   name: "Flower",
   data() {
-    return {
-      background: 'red',
-      xValue: 500,
+    return {      
       flowerDetails: [
         {id:1, url: 'https://i.imgur.com/XG5hBW3.png'},
-        {id:2, url: 'https://i.imgur.com/TmoqCci.png'},
-        {id:3, url: 'https://i.imgur.com/vdamVn4.png'},
-        {id:4, url: 'https://i.imgur.com/BuSfAhu.png'},
-        {id:5, url: 'https://i.imgur.com/UoIgbHR.png'},
-        {id:6, url: 'https://i.imgur.com/7Xwc9BA.png'}        
-        ]     
-    }
+        // {id:2, url: 'https://i.imgur.com/TmoqCci.png'},
+        // {id:3, url: 'https://i.imgur.com/vdamVn4.png'},
+        // {id:4, url: 'https://i.imgur.com/BuSfAhu.png'},
+        // {id:5, url: 'https://i.imgur.com/UoIgbHR.png'},
+        // {id:6, url: 'https://i.imgur.com/7Xwc9BA.png'}        
+        ],
+        position: Math.random()* 180,
+        background: 'red',
+        top: 350,
+        left: Math.random() *350 + 'px'
+
+      }
   },
   props: {
     flower: {
@@ -41,11 +44,14 @@ export default {
           this.flowerDetails.splice(index, 1);
       },
       //Working on random image here
-      position () {
-        var x = this.Math.random() * 130;
-        var y = this.Math.random() * 130;
-        return 'x' + 'y';
-      }
+     randomPosition (x,y) {
+       
+        x = Math.floor(Math.random() * 150) + px;
+        y = Math.floor(Math.random() * 150) + px;
+         console.log('working?');     
+       this.randomPosition(x,y);
+      
+     }
     }
   
 };
@@ -56,5 +62,10 @@ export default {
 img {
   width: 150px;
   height: 200px;
+}
+
+div {
+  position: absolute;
+  
 }
 </style>
