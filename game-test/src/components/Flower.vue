@@ -1,11 +1,8 @@
 <template>
   <div>
-    <img v-for="(image, index) in flowerDetails" 
-         v-bind:src="image.url"
-         :key="index" 
-         v-on:click="aFlowerClicked"
-         v-bind:style="{background: background, top: top, left: left, position: position}"/>
-  
+    <img class="flower" v-bind:src="flowerDetails.url"
+         v-on:click="aFlowerClicked" 
+         :style="{left: flower.x + 'px', top: flower.y +'px'}">
   </div>
 </template>
 
@@ -13,21 +10,9 @@
 export default {
   name: "Flower",
   data() {
-    return {      
-      flowerDetails: [
-        {id:1, url: 'https://i.imgur.com/XG5hBW3.png'},
-        // {id:2, url: 'https://i.imgur.com/TmoqCci.png'},
-        // {id:3, url: 'https://i.imgur.com/vdamVn4.png'},
-        // {id:4, url: 'https://i.imgur.com/BuSfAhu.png'},
-        // {id:5, url: 'https://i.imgur.com/UoIgbHR.png'},
-        // {id:6, url: 'https://i.imgur.com/7Xwc9BA.png'}        
-        ],
-        position: Math.random()* 180,
-        background: 'red',
-        top: 350,
-        left: Math.random() *350 + 'px'
-
-      }
+    return {
+      flowerDetails: { url: "https://i.imgur.com/RjzfjS5.png" }
+    };
   },
   props: {
     flower: {
@@ -36,36 +21,24 @@ export default {
     }
   },
 
-    methods: {
-      //Was testing and it worked, need to find a proper solution
-      aFlowerClicked (index) {
-          console.log('Click in the flower');
-          this.$emit('HelloEmitting');
-          this.flowerDetails.splice(index, 1);
-      },
-      //Working on random image here
-     randomPosition (x,y) {
-       
-        x = Math.floor(Math.random() * 150) + px;
-        y = Math.floor(Math.random() * 150) + px;
-         console.log('working?');     
-       this.randomPosition(x,y);
-      
-     }
+  methods: {
+    //Was testing and it worked, need to find a proper solution
+    aFlowerClicked(index) {
+      console.log("Click in the flower");
+      this.$emit("HelloEmitting");     
     }
-  
+  }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 img {
-  width: 150px;
-  height: 200px;
+  width: 50px;
+  height: 50px;
 }
 
-div {
+.flower {
   position: absolute;
-  
 }
 </style>

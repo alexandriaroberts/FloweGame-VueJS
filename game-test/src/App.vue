@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <flower-game/> 
+      <flower-game id="game" :width="800" :height="600"/> 
   </div>
 </template>
 
@@ -19,8 +19,13 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  text-align: center; 
   margin-top: 60px;
+}
+
+#game {
+   position: relative;
+   overflow: hidden;
+   background: #2c3e50;
 }
 </style>
