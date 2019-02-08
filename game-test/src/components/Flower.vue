@@ -14,26 +14,18 @@ export default {
   name: "Flower",
   data() {
     return {      
-      flowerDetails: [
-        {id:1, url: 'https://i.imgur.com/XG5hBW3.png'},
-        // {id:2, url: 'https://i.imgur.com/TmoqCci.png'},
-        // {id:3, url: 'https://i.imgur.com/vdamVn4.png'},
-        // {id:4, url: 'https://i.imgur.com/BuSfAhu.png'},
-        // {id:5, url: 'https://i.imgur.com/UoIgbHR.png'},
-        // {id:6, url: 'https://i.imgur.com/7Xwc9BA.png'}        
-        ],
-        position: Math.random()* 180,
-        background: 'red',
-        top: 350,
-        left: Math.random() *350 + 'px'
-
+      flowerDetails: 
+        {id:1, url: 'https://i.imgur.com/XG5hBW3.png'} 
+        
       }
   },
   props: {
     flower: {
       type: Object,
       required: true
-    }
+    },
+     top: 350,
+     left: Math.random() *350 + 'px'
   },
 
     methods: {
