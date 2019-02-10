@@ -21,12 +21,7 @@ body {
   background: linear-gradient(to bottom, #acbb78, #f7f8f8);
 }
 #app {
-<<<<<<< HEAD
   font-family: "Avenir", Helvetica, Arial, sans-serif;
-=======
-  position: relative;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

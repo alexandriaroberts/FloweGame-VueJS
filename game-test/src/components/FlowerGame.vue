@@ -1,6 +1,5 @@
 /* eslint-disable */
 <template>
-<<<<<<< HEAD
   <div :style="{width: width + 'px', height: height + 'px'}">
     <flower
       class="flower"
@@ -17,19 +16,6 @@
     <div v-else>
       <score-board class="scoreboard" :score="score"></score-board>
     </div>
-=======
-  <div>
-    <flower
-      v-for="(flower, index) in flowers"
-      :flower="flower"
-      :key="index"
-      v-on:HelloEmitting="aFlowerClicked"
-    ></flower>
-    <!-- This button is for testing random images and clicks. -->
-    <button @click="addFlower">Add Flower Here</button>
-    <button v-show="!gameStarted" @click="startGame">Play Game</button>
-    <score-board :score="score"></score-board>
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
   </div>
 </template>
 
@@ -46,7 +32,6 @@ export default {
     gameLength: {
       type: Number,
       required: false,
-<<<<<<< HEAD
       default: 40 // Seconds
     },
     width: {
@@ -63,18 +48,12 @@ export default {
       type: Number,
       required: false,
       default: 5
-=======
-      default: 1000 // Seconds
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
     }
   },
 
   data() {
     return {
-<<<<<<< HEAD
       started: false,
-=======
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
       score: 0,
       flowers: [],
       flowerId: 0,
@@ -82,7 +61,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
     // start() {
     //   this.gameStarted = true;
     //   this.score = 0;
@@ -109,19 +87,6 @@ export default {
         value: (1 + getRandomInt(9)) * 100
       };
     },
-=======
-    addFlower() {
-      console.log("Hey"); // to test remove later
-      this.flowers.push(flower);
-      const flower = this.createFlower();
-    },
-    createFlower() {
-      const getRandomInt = max => {
-        return Math.floor(Math.random() * Math.floor(max));
-      };
-     
-    },
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
     startGame() {
       this.score = 0;
       this.gameStarted = true;
@@ -130,7 +95,6 @@ export default {
       }, this.gameLength * 1000);
       this.addFlower();
     },
-<<<<<<< HEAD
     endGame() {
       alert("Times up!");
     },
@@ -139,16 +103,6 @@ export default {
         this.score += 400;
         this.flowers.splice(this.id, 1);
         this.addFlower();
-=======
-
-    endGame() {
-      alert("Times up!");
-    },
-    aFlowerClicked() {
-      console.log("Emit inside the flower game"); //testing emit
-      if (this.aFlowerClicked) {
-        this.score += 100;
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
       }
     }
   }
@@ -160,7 +114,6 @@ export default {
 .div {
   position: absolute;
 }
-<<<<<<< HEAD
 .scoreboard {
   font-size: 28px;
   text-align: center;
@@ -195,6 +148,4 @@ button {
   border-radius: 35px;
   transition: all 0.2s ease-in-out;
 }
-=======
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
 </style>

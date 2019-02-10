@@ -13,25 +13,15 @@
 export default {
   name: "Flower",
   data() {
-<<<<<<< HEAD
     return {
       flowerDetails: { url: "https://i.imgur.com/RjzfjS5.png" }
     };
-=======
-    return {      
-      flowerDetails: 
-        {id:1, url: 'https://i.imgur.com/XG5hBW3.png'} 
-        
-      }
->>>>>>> f886eced266dd23d89f419329f0833c6a9e3a802
   },
   props: {
     flower: {
       type: Object,
       required: true
-    },
-     top: 350,
-     left: Math.random() *350 + 'px'
+    }
   },
 
   methods: {
