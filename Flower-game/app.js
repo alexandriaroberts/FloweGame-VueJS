@@ -1,23 +1,18 @@
+const getRandomInt = max => {
+  return Math.floor(Math.random() * Math.floor(max));
+};
+
 const Flower = {
-  template: `<div> <img v-for="(image, index) in flowerDetails" 
-                        v-bind:src="image.url" 
-                        :key="index"
-                        v-on:click="aFlowerClicked" 
-                        v-bind:style="position">
-                   </img>
-    </div>`,
+  template: `<div id="flower">
+<img
+class="flower"
+v-bind:src="flowerDetails.url"
+v-on:click="aFlowerClicked"
+:style="{left: flower.x + 'px', top: flower.y +'px'}"/>
+</div>`,
   data() {
     return {
-      background: "red",
-      xValue: 500,
-      flowerDetails: [
-        { id: 1, url: "https://i.imgur.com/XG5hBW3.png" },
-        { id: 2, url: "https://i.imgur.com/TmoqCci.png" },
-        { id: 3, url: "https://i.imgur.com/vdamVn4.png" },
-        { id: 4, url: "https://i.imgur.com/BuSfAhu.png" },
-        { id: 5, url: "https://i.imgur.com/UoIgbHR.png" },
-        { id: 6, url: "https://i.imgur.com/7Xwc9BA.png" }
-      ]
+      flowerDetails: { url: "https://i.imgur.com/RjzfjS5.png" }
     };
   },
   props: {
@@ -27,31 +22,22 @@ const Flower = {
     }
   },
   methods: {
+    //using emit to find flower clicked
     aFlowerClicked(index) {
-      console.log("Click in the flower");
-      this.$emit("HelloEmitting");
-      this.flowerDetails.splice(index, 1);
-    },
-    position() {
-      var x = this.Math.random() * 130;
-      var y = this.Math.random() * 130;
-      return "x" + "y";
+        this.$emit("HelloEmitting");
     }
   }
 };
 
 //child component
-const Scoreboard = {
+const ScoreBoard = {
   template: `
-    <div>{{ score }}</div>
-  `,
+<div>{{ score }}</div>
+`,
   props: {
     score: {
       type: Number,
       required: true
-    },
-    methods: {
-      incrementScore() {}
     }
   }
 };
@@ -59,30 +45,73 @@ const Scoreboard = {
 //Controls the flowers, score, start game and end game
 //main component, with its 2 components
 const FlowerGame = {
-  components: {
+    template: ` <div :style="{width: width + 'px', height: height + 'px'}">
+    <flower
+      class="flower"
+      v-for="flower in flowers"
+      :flower="flower"
+      :key="flower.id"
+      v-on:HelloEmitting="removeFlower"
+    ></flower>
+
+    <div class="screenPlay" v-if="!gameStarted">
+      <h1>Flower Game</h1>
+      <button class="btn" v-show="!gameStarted" @click="startGame">Play Game</button>
+    </div>
+    <div v-else>
+      <score-board class="scoreboard" :score="score"></score-board>
+    </div>
+  </div>`,
+    components: {
     Flower,
-    Scoreboard
+    ScoreBoard
   },
   props: {
     gameLength: {
       type: Number,
       required: false,
-      default: 5 // Seconds
+      default: 40 // Seconds
+    },
+    width: {
+      type: Number,
+      required: false,
+      default: 800
+    },
+    height: {
+      type: Number,
+      required: false,
+      default: 600
     }
   },
+
   data() {
     return {
+      started: false,
       score: 0,
       flowers: [],
+      flowerId: 0,
       gameStarted: false
     };
   },
   methods: {
+    // start() {
+    //   this.gameStarted = true;
+    //   this.score = 0;
+    //   this.flowers = {};
+    //   this.flowerId = 0;
+    //   this.startGame();
+    // },
     addFlower() {
-      console.log("Hey"); // to test remove later
-      this.flowers.push({
-        //An empty object
-      });
+      const flower = this.createFlower();
+      this.flowers.push(flower);
+    },
+    createFlower() {
+      return {
+        id: ++this.flowerId,
+        x: getRandomInt(this.width),
+        y: getRandomInt(this.height),
+        value: (1 + getRandomInt(9)) * 100
+      };
     },
     startGame() {
       this.score = 0;
@@ -95,26 +124,14 @@ const FlowerGame = {
     endGame() {
       alert("Times up!");
     },
-    aFlowerClicked() {
-      console.log("Emit inside the flower game"); //testing emit
-      if (this.aFlowerClicked) {
-        this.score += 100;
+    removeFlower() {
+      if (this.removeFlower) {
+        this.score += 400;
+        this.flowers.splice(this.id, 1);
+        this.addFlower();
       }
     }
-  },
-  template: `<div>
-                 <flower v-for="(flower, index) in flowers" 
-                         :flower="flower" 
-                         :key="index" 
-                         v-on:HelloEmitting="aFlowerClicked">
-          
-                 </flower>
-                 <button v-show="!gameStarted" 
-                         @click="startGame">
-                       Play Game
-                  </button>
-                 <Scoreboard :score="score"></Scoreboard> 
-        </div>`
+  }
 };
 
 //This is a root instance, with one component
@@ -123,5 +140,5 @@ new Vue({
   components: {
     FlowerGame
   },
-  template: `<flower-game/>`
+  template: `<flower-game id="game" :width="800" :height="700"/>`
 });

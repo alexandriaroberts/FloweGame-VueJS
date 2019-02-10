@@ -13,18 +13,7 @@
     <h1>Flower game</h1>
 
     <div id="app">
-      <flower-game class="background">
-        <flower
-          v-for="(flower, index) in flowers"
-          :flower="flower"
-          :key="index"
-          v-on:HelloEmitting="aFlowerCkicked"
-        >
-        </flower>
-        <button v-show="!gameStarted" @click="startGame">Play Game</button>
-        <score-board :score="score"></score-board>
-      </flower-game>
-    </div>
+         </div>
 
     <script src="app.js"></script>
   </body>
