@@ -2,15 +2,20 @@
 <template>
   <div :style="{width: width + 'px', height: height + 'px'}">
     <flower
+      class="flower"
       v-for="flower in flowers"
       :flower="flower"
       :key="flower.id"
-      v-on:HelloEmitting="aFlowerClicked"
+      v-on:HelloEmitting="removeFlower"
     ></flower>
-    <!-- This button is for testing random images and clicks. -->
-    <button @click="addFlower">Add Flower Here</button>
-    <button v-show="!gameStarted" @click="startGame">Play Game</button>
-    <score-board :score="score"></score-board>
+
+    <div class="screenPlay" v-if="!gameStarted">
+      <h1>Flower Game</h1>
+      <button class="btn" v-show="!gameStarted" @click="startGame">Play Game</button>
+    </div>
+    <div v-else>
+      <score-board class="scoreboard" :score="score"></score-board>
+    </div>
   </div>
 </template>
 
@@ -27,7 +32,7 @@ export default {
     gameLength: {
       type: Number,
       required: false,
-      default: 1000 // Seconds
+      default: 40 // Seconds
     },
     width: {
       type: Number,
@@ -38,11 +43,17 @@ export default {
       type: Number,
       required: false,
       default: 600
+    },
+    speed: {
+      type: Number,
+      required: false,
+      default: 5
     }
   },
 
   data() {
     return {
+      started: false,
       score: 0,
       flowers: [],
       flowerId: 0,
@@ -50,23 +61,25 @@ export default {
     };
   },
   methods: {
+    // start() {
+    //   this.gameStarted = true;
+    //   this.score = 0;
+    //   this.flowers = {};
+    //   this.flowerId = 0;
+    //   this.startGame();
+    // },
     addFlower() {
-       const getRandomInt = max => {
+      const getRandomInt = max => {
         return Math.floor(Math.random() * Math.floor(max));
-      };  
-        const flower = this.createFlower();
-      const durationOnScreenInMS = Math.max(getRandomInt(this.speed) * 1000, 1000);
+      };
+      const flower = this.createFlower();
+      //const durationOnScreenInMS = Math.max(getRandomInt(this.speed) * 1000, 1000);
       this.flowers.push(flower);
-      setTimeout(() => { this.removeFlower(flower,true)}, durationOnScreenInMS)
-    
-    },
-    removeFlower () {
-
     },
     createFlower() {
       const getRandomInt = max => {
         return Math.floor(Math.random() * Math.floor(max));
-      };   
+      };
       return {
         id: ++this.flowerId,
         x: getRandomInt(this.width),
@@ -82,16 +95,15 @@ export default {
       }, this.gameLength * 1000);
       this.addFlower();
     },
-
     endGame() {
       alert("Times up!");
     },
-    aFlowerClicked() {
-      console.log("Emit inside the flower game"); //testing emit
-      if (this.aFlowerClicked) {
-        this.score += 100;       
-       }
-       
+    removeFlower() {
+      if (this.removeFlower) {
+        this.score += 400;
+        this.flowers.splice(this.id, 1);
+        this.addFlower();
+      }
     }
   }
 };
@@ -100,7 +112,40 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .div {
-  
   position: absolute;
+}
+.scoreboard {
+  font-size: 28px;
+  text-align: center;
+  margin: 0 auto;
+  color: #f7f8f8;
+  text-shadow: 2px 2px rgb(163, 33, 120);
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.screenPlay {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-size: 64px;
+  color: #f7f8f8;
+  text-shadow: 2px 2px rgb(163, 33, 120);
+}
+
+button {
+  background: #f7f8f8;
+  color: rgb(163, 33, 120);
+  font-size: 29px;
+  padding: 5%;
+  border-radius: 35px;
+  transition: all 0.2s ease-in-out;
 }
 </style>

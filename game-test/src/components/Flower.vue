@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <img class="flower" v-bind:src="flowerDetails.url"
-         v-on:click="aFlowerClicked" 
-         :style="{left: flower.x + 'px', top: flower.y +'px'}">
+  <div id="flower">
+    <img
+      class="flower"
+      v-bind:src="flowerDetails.url"
+      v-on:click="aFlowerClicked"
+      :style="{left: flower.x + 'px', top: flower.y +'px'}"
+    >
   </div>
 </template>
 
@@ -25,7 +28,7 @@ export default {
     //Was testing and it worked, need to find a proper solution
     aFlowerClicked(index) {
       console.log("Click in the flower");
-      this.$emit("HelloEmitting");     
+      this.$emit("HelloEmitting");
     }
   }
 };
@@ -34,11 +37,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
 }
 
 .flower {
   position: absolute;
+  cursor: pointer;
+  background: transparent;
 }
 </style>
