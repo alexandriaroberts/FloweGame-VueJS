@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>{{ score }}</div>
+    <span>Score: {{ score }}</span><br>
+    <span>Time: {{timeRemaining}}</span>
   </div>
 </template>
 
@@ -9,6 +10,10 @@ export default {
   name: "ScoreBoard",
   props: {
     score: {
+      type: Number,
+      required: true
+    },
+    timeRemaining: {
       type: Number,
       required: true
     }

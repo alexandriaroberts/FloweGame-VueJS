@@ -45,5 +45,6 @@ img {
   position: absolute;
   cursor: pointer;
   background: transparent;
+  padding: 5%;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <flower-game id="game" :width="800" :height="700"/>
+    <flower-game id="game" :speed="5" :duration="60" :width="500" :height="400"/>
   </div>
 </template>
 
@@ -35,5 +35,6 @@ body {
   background: #283c86;
   background: -webkit-linear-gradient(to left, #45a247, #283c86);
   background: linear-gradient(to left, #45a247, #283c86);
+   box-shadow: 2px 2px 5px 0px rgba(0,1,25,1);
 }
 </style>
