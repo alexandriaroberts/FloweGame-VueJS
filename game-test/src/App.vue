@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <flower-game id="game" :speed="5" :duration="60" :width="500" :height="400"/>
+    <flower-game id="game" :speed="5" :duration="60" :width="600" :height="550"/>
   </div>
 </template>
 

@@ -12,7 +12,7 @@ export default {
     score: {
       type: Number,
       required: true
-    },
+    },    
     timeRemaining: {
       type: Number,
       required: true

@@ -31,11 +31,17 @@ v-on:click="aFlowerClicked"
 
 //child component
 const ScoreBoard = {
-  template: `
-<div>{{ score }}</div>
+  template: ` <div>
+  <span>Score: {{ score }}</span><br>
+  <span>Time: {{ timeRemaining }}</span>
+  </div>
 `,
   props: {
     score: {
+      type: Number,
+      required: true
+    },
+    timeRemaining: {
       type: Number,
       required: true
     }
@@ -55,24 +61,20 @@ const FlowerGame = {
     ></flower>
 
     <div class="screenPlay" v-if="!gameStarted">
-      <h1>Flower Game</h1>
-      <button class="btn" v-show="!gameStarted" @click="startGame">Play Game</button>
-    </div>
-    <div v-else>
-      <score-board class="scoreboard" :score="score"></score-board>
-    </div>
+    <h1>Flower Game</h1>
+    <button class="btn" v-show="!gameStarted" @click="start">Play Game</button>
+  </div>
+  <div v-else>
+    <score-board class="scoreboard" :score="score" :timeRemaining="timeRemaining"></score-board>
+  </div>
+</div>
   </div>`,
-    components: {
+  components: {
     Flower,
     ScoreBoard
   },
   props: {
-    gameLength: {
-      type: Number,
-      required: false,
-      default: 40 // Seconds
-    },
-    width: {
+      width: {
       type: Number,
       required: false,
       default: 800
@@ -81,6 +83,16 @@ const FlowerGame = {
       type: Number,
       required: false,
       default: 600
+    },
+    speed: {
+      type: Number,
+      required: false,
+      default: 5
+    },
+    duration: {
+      type: Number,
+      required: false,
+      default: 60
     }
   },
 
@@ -89,23 +101,49 @@ const FlowerGame = {
       started: false,
       score: 0,
       flowers: [],
+      timeRemaining: 0,
+      timerId: null,
       flowerId: 0,
-      gameStarted: false
-    };
+      gameStarted: false,
+      flowerTimerId : null
+    }
   },
   methods: {
-    // start() {
-    //   this.gameStarted = true;
-    //   this.score = 0;
-    //   this.flowers = {};
-    //   this.flowerId = 0;
-    //   this.startGame();
-    // },
+    start() {
+      this.started = true;
+      this.gameStarted = true;
+      this.score = 0;
+      this.flowers = [];
+      this.flowerId = 0;
+      this.timeRemaining = this.duration;  
+      this.startTimer();    
+      this.startGame();
+    },
+    startTimer() {
+       this.timerId = setInterval(() => {
+        if(this.timeRemaining === 0) {
+          this.endGame();
+        }
+        this.timeRemaining -= 1;
+      }, 1000);
+    },
     addFlower() {
+      const getRandomInt = max => {
+        return Math.floor(Math.random() * Math.floor(max));
+      };
       const flower = this.createFlower();
+      const durationOnScreenInMS = Math.max(getRandomInt(this.speed) * 1000,1000);
       this.flowers.push(flower);
+      setTimeout(() => {
+        this.removeFlower(Flower, true);
+      }, durationOnScreenInMS);
+     this.flowerTimerId = setTimeout(this.addFlower, 100* this.speed);
+
     },
     createFlower() {
+      const getRandomInt = max => {
+        return Math.floor(Math.random() * Math.floor(max));
+      };
       return {
         id: ++this.flowerId,
         x: getRandomInt(this.width),
@@ -118,18 +156,22 @@ const FlowerGame = {
       this.gameStarted = true;
       setTimeout(() => {
         this.endGame();
-      }, this.gameLength * 1000);
+      }, this.duration * 1000);
       this.addFlower();
     },
     endGame() {
+      clearInterval(this.timerId);
+      this.timerId = null;
+      this.started = false;
       alert("Times up!");
     },
-    removeFlower() {
-      if (this.removeFlower) {
+    removeFlower(flower, userFailedtoClick = false) {
+       
+      if (userFailedtoClick !== true) {
         this.score += 400;
-        this.flowers.splice(this.id, 1);
-        this.addFlower();
-      }
+       }
+      // const index = this.flowers.findIndex(f => f.id === flower.id)
+       this.flowers.splice(flower, 1);
     }
   }
 };
@@ -140,5 +182,5 @@ new Vue({
   components: {
     FlowerGame
   },
-  template: `<flower-game id="game" :width="800" :height="700"/>`
+  template: `<flower-game id="game" :speed="5" :duration="60" :width="500" :height="500"/>`
 });

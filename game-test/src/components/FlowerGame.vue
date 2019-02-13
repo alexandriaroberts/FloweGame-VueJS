@@ -11,6 +11,7 @@
 
     <div class="screenPlay" v-if="!gameStarted">
       <h1>Flower Game</h1>
+      <p>For anyone, who loves picking up flowers, pick them up virtually. Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
       <button class="btn" v-show="!gameStarted" @click="start">Play Game</button>
     </div>
     <div v-else>
@@ -29,7 +30,7 @@ export default {
     ScoreBoard
   },
   props: {
-      width: {
+    width: {
       type: Number,
       required: false,
       default: 800
@@ -60,8 +61,8 @@ export default {
       timerId: null,
       flowerId: 0,
       gameStarted: false,
-      flowerTimerId : null
-    }
+      flowerTimerId: null
+    };
   },
   methods: {
     start() {
@@ -70,13 +71,13 @@ export default {
       this.score = 0;
       this.flowers = [];
       this.flowerId = 0;
-      this.timeRemaining = this.duration;  
-      this.startTimer();    
+      this.timeRemaining = this.duration;
+      this.startTimer();
       this.startGame();
     },
     startTimer() {
-       this.timerId = setInterval(() => {
-        if(this.timeRemaining === 0) {
+      this.timerId = setInterval(() => {
+        if (this.timeRemaining === 0) {
           this.endGame();
         }
         this.timeRemaining -= 1;
@@ -87,13 +88,15 @@ export default {
         return Math.floor(Math.random() * Math.floor(max));
       };
       const flower = this.createFlower();
-      const durationOnScreenInMS = Math.max(getRandomInt(this.speed) * 1000,1000);
+      const durationOnScreenInMS = Math.max(
+        getRandomInt(this.speed) * 1000,
+        1000
+      );
       this.flowers.push(flower);
       setTimeout(() => {
         this.removeFlower(Flower, true);
       }, durationOnScreenInMS);
-     this.flowerTimerId = setTimeout(this.addFlower, 100* this.speed);
-
+      this.flowerTimerId = setTimeout(this.addFlower, 100 * this.speed);
     },
     createFlower() {
       const getRandomInt = max => {
@@ -121,12 +124,11 @@ export default {
       alert("Times up!");
     },
     removeFlower(flower, userFailedtoClick = false) {
-       
       if (userFailedtoClick !== true) {
         this.score += 400;
-       }
+      }
       // const index = this.flowers.findIndex(f => f.id === flower.id)
-       this.flowers.splice(flower, 1);
+      this.flowers.splice(flower, 1);
     }
   }
 };
@@ -160,6 +162,13 @@ export default {
 h1 {
   font-size: 64px;
   color: #f7f8f8;
+  text-shadow: 2px 2px rgb(163, 33, 120);
+}
+
+p {
+  font-size: 20px;
+  color: #f7f8f8;
+  line-height: 1.5;
   text-shadow: 2px 2px rgb(163, 33, 120);
 }
 

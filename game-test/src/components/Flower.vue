@@ -27,8 +27,7 @@ export default {
   methods: {
     //Was testing and it worked, need to find a proper solution
     aFlowerClicked(index) {
-      console.log("Click in the flower");
-      this.$emit("HelloEmitting");
+       this.$emit("HelloEmitting");
     }
   }
 };
