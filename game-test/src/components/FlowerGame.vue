@@ -10,12 +10,18 @@
     ></flower>
 
     <div class="screenPlay" v-if="!gameStarted">
-      <h1>Flower Game</h1>
-      <p>For anyone, who loves picking up flowers, pick them up virtually. Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
-      <button class="btn" v-show="!gameStarted" @click="start">Play Game</button>
+      <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png"/>
+      <h1>Flower Game!</h1>
+      <p>Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
+      <button class="btn" v-show="!gameStarted" @click="start">Play Game!</button>
     </div>
-    <div v-else>
+    <div v-else-if="timeRemaining !== 0">
       <score-board class="scoreboard" :score="score" :timeRemaining="timeRemaining"></score-board>
+    </div>
+    <div class="end-screen" v-else-if="timeRemaining === 0">
+      <h1>Congratulations!</h1>
+      <h2>The game is finished!😃✨✨🎉</h2>
+      <p>Your score is {{score}}!💖</p>
     </div>
   </div>
 </template>
@@ -121,6 +127,7 @@ export default {
       clearInterval(this.timerId);
       this.timerId = null;
       this.started = false;
+      this.addFlower = null;     
       alert("Times up!");
     },
     removeFlower(flower, userFailedtoClick = false) {
@@ -141,10 +148,10 @@ export default {
 }
 .scoreboard {
   font-size: 28px;
-  text-align: center;
+  display: grid;
   margin: 0 auto;
-  color: #f7f8f8;
-  text-shadow: 2px 2px rgb(163, 33, 120);
+ color: rgb(248, 197, 34);
+  text-shadow: 0.5px 0.5px rgb(20, 18, 20);
   position: absolute;
   top: 10%;
   left: 50%;
@@ -154,30 +161,68 @@ export default {
 .screenPlay {
   text-align: center;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 h1 {
-  font-size: 64px;
-  color: #f7f8f8;
-  text-shadow: 2px 2px rgb(163, 33, 120);
+  text-align: center;
+  font-size: 60px;
+  line-height: 1.1;
+  color:  rgb(248, 197, 34);
+  text-shadow: 2px 2px rgb(20, 18, 20);
 }
 
-p {
-  font-size: 20px;
-  color: #f7f8f8;
+h2 {
+  text-align: center;
+  font-size: 25px;
+  line-height: 1.1;
+  color:  #fff;
+  text-shadow: 2px 2px rgb(20, 18, 20);
+}
+
+.end-screen p {
+  position: relative;
+  font-size: 25px;
+  color:  #fff;
   line-height: 1.5;
-  text-shadow: 2px 2px rgb(163, 33, 120);
+  text-shadow: 1px 1px rgb(20, 18, 20);
+  padding: 2%;
+  margin: 5%;
+}
+p {
+  position: relative;
+  font-size: 20px;
+  color:  #fff;
+  line-height: 1.5;
+  text-shadow: 1px 1px rgb(20, 18, 20);
+  padding: 2%;
+  margin: 5%;
 }
 
 button {
-  background: #f7f8f8;
-  color: rgb(163, 33, 120);
+  background: #fff;
+  color: rgb(196, 74, 165);
+  text-shadow: 0.5px 0.5px rgb(20, 18, 20);
   font-size: 29px;
-  padding: 5%;
-  border-radius: 35px;
+  padding: 5%;  
+  border-radius: 5px;
   transition: all 0.2s ease-in-out;
 }
+
+.screen-flower{
+position: relative;
+width: 50%;
+left: -270px;
+top: 20px;
+}
+
+.end-screen {
+  display: grid;
+  text-align: center;
+  padding: 10%;
+}
+
+
 </style>

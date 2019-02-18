@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>Score: {{ score }}</span><br>
+    <span class="score">Score: {{ score }}</span><br>
     <span>Time: {{timeRemaining}}</span>
   </div>
 </template>
@@ -23,4 +23,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
