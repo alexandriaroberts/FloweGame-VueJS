@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <flower-game id="game" :speed="5" :duration="60" :width="600" :height="550"/>
+    <flower-game id="game" :speed="5" :duration="3" :width="600" :height="550"/>
   </div>
 </template>
 
@@ -15,6 +15,7 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC');
 body {
   height: 100%;
   background: rgb(43, 205, 179);
@@ -36,7 +37,6 @@ body {
   /* background: -webkit-linear-gradient(to left, #45a247, #283c86);
   background: linear-gradient(to left, #45a247, #283c86); */
    box-shadow: 2px 2px 5px 0px rgba(0,1,25,1);
-   border: 20px 10px solid #000;
    border-radius: 5px;
 }
 </style>

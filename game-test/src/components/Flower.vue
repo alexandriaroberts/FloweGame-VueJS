@@ -45,5 +45,6 @@ img {
   cursor: pointer;
   background: transparent;
   padding: 5%;
+  z-index: 1000;
 }
 </style>

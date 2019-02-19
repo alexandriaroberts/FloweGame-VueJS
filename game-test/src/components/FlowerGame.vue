@@ -10,7 +10,7 @@
     ></flower>
 
     <div class="screenPlay" v-if="!gameStarted">
-      <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png"/>
+      <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png">
       <h1>Flower Game!</h1>
       <p>Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
       <button class="btn" v-show="!gameStarted" @click="start">Play Game!</button>
@@ -22,6 +22,8 @@
       <h1>Congratulations!</h1>
       <h2>The game is finished!😃✨✨🎉</h2>
       <p>Your score is {{score}}!💖</p>
+
+      <button class="btn" @click="start">Play Again!</button>
     </div>
   </div>
 </template>
@@ -127,9 +129,9 @@ export default {
       clearInterval(this.timerId);
       this.timerId = null;
       this.started = false;
-      this.addFlower = null;     
+      this.flowers = 0;
       alert("Times up!");
-    },
+      },
     removeFlower(flower, userFailedtoClick = false) {
       if (userFailedtoClick !== true) {
         this.score += 400;
@@ -143,6 +145,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300");
 .div {
   position: absolute;
 }
@@ -150,7 +154,7 @@ export default {
   font-size: 28px;
   display: grid;
   margin: 0 auto;
- color: rgb(248, 197, 34);
+  color: rgb(248, 197, 34);
   text-shadow: 0.5px 0.5px rgb(20, 18, 20);
   position: absolute;
   top: 10%;
@@ -168,24 +172,28 @@ export default {
 
 h1 {
   text-align: center;
+  font-family: "Amatic SC", cursive;
   font-size: 60px;
   line-height: 1.1;
-  color:  rgb(248, 197, 34);
+  color: rgb(248, 197, 34);
   text-shadow: 2px 2px rgb(20, 18, 20);
 }
 
 h2 {
+  font-family: "Open Sans Condensed", sans-serif;
   text-align: center;
   font-size: 25px;
   line-height: 1.1;
-  color:  #fff;
+  color: #fff;
   text-shadow: 2px 2px rgb(20, 18, 20);
 }
 
 .end-screen p {
   position: relative;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-family: "Open Sans Condensed", sans-serif;
   font-size: 25px;
-  color:  #fff;
+  color: #fff;
   line-height: 1.5;
   text-shadow: 1px 1px rgb(20, 18, 20);
   padding: 2%;
@@ -193,29 +201,31 @@ h2 {
 }
 p {
   position: relative;
-  font-size: 20px;
-  color:  #fff;
+  font-family: "Open Sans Condensed", sans-serif;
+  font-size: 25px;
+  color: #fff;
   line-height: 1.5;
   text-shadow: 1px 1px rgb(20, 18, 20);
-  padding: 2%;
-  margin: 5%;
+  padding-bottom: 10%;
 }
 
 button {
-  background: #fff;
-  color: rgb(196, 74, 165);
+  background: rgb(248, 197, 34);
+  color: #283c86;
   text-shadow: 0.5px 0.5px rgb(20, 18, 20);
-  font-size: 29px;
-  padding: 5%;  
+  font-size: 25px;
+  line-height: 1.5;
+  padding: 2.5%;
   border-radius: 5px;
   transition: all 0.2s ease-in-out;
 }
 
-.screen-flower{
-position: relative;
-width: 50%;
-left: -270px;
-top: 20px;
+.screen-flower {
+  position: relative;
+  width: 50%;
+  height: 50%;
+  left: -270px;
+  top: 20px;
 }
 
 .end-screen {
@@ -223,6 +233,8 @@ top: 20px;
   text-align: center;
   padding: 10%;
 }
-
-
+.end-screen .btn {
+ margin-left: 30%;
+ margin-right: 30%;
+}
 </style>
