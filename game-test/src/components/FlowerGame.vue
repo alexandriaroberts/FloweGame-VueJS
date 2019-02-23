@@ -9,7 +9,7 @@
       v-on:HelloEmitting="removeFlower"
     ></flower>
 
-    <div class="screenPlay" v-if="!gameStarted">
+    <div class="screenPlay" v-if="!gameStarted && numberOfGamesPlayed === true">
       <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png">
       <h1>Flower Game!</h1>
       <p>Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
@@ -23,7 +23,7 @@
       <h2>The game is finished!😃✨✨🎉</h2>
       <p>Your score is {{score}}!💖</p>
 
-      <button class="btn" @click="start">Play Again!</button>
+      <!-- <button class="btn" @click="start">Play Again!</button> -->
     </div>
   </div>
 </template>
@@ -129,7 +129,7 @@ export default {
       clearInterval(this.timerId);
       this.timerId = null;
       this.started = false;
-      this.flowers = 0;
+      this.flowers = null;
       alert("Times up!");
       },
     removeFlower(flower, userFailedtoClick = false) {
@@ -138,6 +138,15 @@ export default {
       }
       // const index = this.flowers.findIndex(f => f.id === flower.id)
       this.flowers.splice(flower, 1);
+    }
+  },
+  computed: {
+    numberOfGamesPlayed() {
+      if(this.start) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };
