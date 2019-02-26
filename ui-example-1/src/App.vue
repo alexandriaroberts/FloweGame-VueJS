@@ -12,24 +12,34 @@
 </template>
 
 <style>
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  background-color: rgb(204, 169, 139);
+  /* display: grid;
+  align-items: center;
+  justify-content: center; */
   
 }
 #nav {
+  position: absolute;
+  top: 100%;
+  left: 100%;
+  transform: translate(100%, 100%);
   padding: 30px;
+  z-index: 10;
 }
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  font-size: 34px;
+  color: #db853f;
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #5d7477;
 }
 </style>

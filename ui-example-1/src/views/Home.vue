@@ -1,7 +1,7 @@
 <template>
   <div id="home">
-    <ImageGallery :urlImage="staticUrl[0]" startX=30 startY=300 :endX=0 endY=0></ImageGallery>
-   <!-- <ImageGallery :urlImage="staticUrl[1]" startX=30 startY=30 :endX=0 endY=100></ImageGallery> -->
+    <ImageGallery class="image1" :urlImage="staticUrl[0]" ></ImageGallery>
+    <ImageGallery class="image2" :urlImage="staticUrl[1]"></ImageGallery>
   </div>
 </template>
 
@@ -9,40 +9,52 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import ImageGallery from "@/components/ImageGallery.vue";
-import axios from 'axios'
-const util = require('util')
+import axios from "axios";
+const util = require("util");
 
 export default {
   name: "home",
   data() {
     return {
-      staticUrl: []
-                   
-    };
+      staticUrl: [ 'https://source.unsplash.com/user/erondu/1600x900' , 
+      'https://source.unsplash.com/daily' ]
+    }
   },
   components: {
     HelloWorld,
     ImageGallery
-  },
-  mounted() {
-    console.log('In Home Mounted: ... before Axios');
-
-    axios.get("https://dog.ceo/api/breeds/image/random")
-          .then( (data) => {
-            // console.log('In Home Mounted: ...Inside Axios ' + util.inspect(data, {showHidden: false, depth: null})  );
-            // console.log('next');
-            // console.log(data.data.message);
-            this.staticUrl = [data.data.message, data.data.message]
-          })
-          .catch(err => console.log("Error inside axios " + err))
-
-    console.log('In Home Mounted: ... after Axios');
   }
 };
 </script>
 
 <style>
-#home{
-position: relative;
+div {  
+ position: absolute;
+ margin-left: 10%;
+ }
+
+img {
+
 }
+.image1 { 
+  z-index: 1;
+   margin-left: 50px;
+  animation: move 1.5s;   
+}
+
+.image2 {
+ z-index: 2;
+  margin-left: -50px;
+  margin-top: 140px;
+  animation: move 1.5s;
+}
+
+@keyframes move {
+ 0%   {margin-left: -25%;}
+    100% {opacity: 1;}
+}
+
+
+
+
 </style>
