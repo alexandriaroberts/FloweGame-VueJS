@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-  <div :style="{width: width + 'px', height: height + 'px'}">
+   <div :style="{width: width + 'px', height: height + 'px'}">
     <flower
       class="flower"
       v-for="flower in flowers"
@@ -9,13 +9,13 @@
       v-on:HelloEmitting="removeFlower"
     ></flower>
 
-    <div class="screenPlay" v-if="!gameStarted && numberOfGamesPlayed === true">
-      <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png">
+    <div class="screenPlay" v-if="!gameStarted">
+ <img class="screen-flower" src="https://i.imgur.com/RjzfjS5.png"/>
       <h1>Flower Game!</h1>
-      <p>Click on a flower apearing randomly and you will get points for collecting them. Enjoy!</p>
-      <button class="btn" v-show="!gameStarted" @click="start">Play Game!</button>
+ <p>Click on a flower appearing randomly and you will get points for collecting them. Enjoy!</p>
+      <button class="btn" v-show="!gameStarted" @click="start">Play Game</button>
     </div>
-    <div v-else-if="timeRemaining !== 0">
+      <div v-else-if="timeRemaining !== 0">
       <score-board class="scoreboard" :score="score" :timeRemaining="timeRemaining"></score-board>
     </div>
     <div class="end-screen" v-else-if="timeRemaining === 0">
@@ -23,8 +23,9 @@
       <h2>The game is finished!😃✨✨🎉</h2>
       <p>Your score is {{score}}!💖</p>
 
-      <!-- <button class="btn" @click="start">Play Again!</button> -->
+      <button class="btn" @click="start">Play Again!</button>
     </div>
+  </div>
   </div>
 </template>
 
@@ -121,7 +122,9 @@ export default {
       this.score = 0;
       this.gameStarted = true;
       setTimeout(() => {
-        this.endGame();
+        this.timeRemaining = 0;
+          this.endGame();
+        
       }, this.duration * 1000);
       this.addFlower();
     },
@@ -129,9 +132,8 @@ export default {
       clearInterval(this.timerId);
       this.timerId = null;
       this.started = false;
-      this.flowers = null;
-      alert("Times up!");
-      },
+      this.flowers = 0;     
+    },
     removeFlower(flower, userFailedtoClick = false) {
       if (userFailedtoClick !== true) {
         this.score += 400;
@@ -141,12 +143,17 @@ export default {
     }
   },
   computed: {
-    numberOfGamesPlayed() {
-      if(this.start) {
+    //     flowers () {
+    //       return Object.values(this.liveFlowers);
+    //     }
+    noOfGamesPlayed: function() {
+      if (this.start()) {
         return true;
       } else {
         return false;
       }
+
+      console.log("hey");
     }
   }
 };
@@ -243,7 +250,7 @@ button {
   padding: 10%;
 }
 .end-screen .btn {
- margin-left: 30%;
- margin-right: 30%;
+  margin-left: 30%;
+  margin-right: 30%;
 }
 </style>

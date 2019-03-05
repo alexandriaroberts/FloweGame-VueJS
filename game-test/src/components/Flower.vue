@@ -27,7 +27,7 @@ export default {
   methods: {
     //Was testing and it worked, need to find a proper solution
     aFlowerClicked(index) {
-       this.$emit("HelloEmitting");
+        this.$emit("HelloEmitting");
     }
   }
 };
