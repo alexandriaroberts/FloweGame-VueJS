@@ -1,6 +1,6 @@
 /* eslint-disable */
 <template>
-   <div :style="{width: width + 'px', height: height + 'px'}">
+   <div :style="{width: width + 'px', height: height + 'px'}">  
     <flower
       class="flower"
       v-for="flower in flowers"
@@ -23,13 +23,15 @@
       <h2>The game is finished!😃✨✨🎉</h2>
       <p>Your score is {{score}}!💖</p>
 
-      <button class="btn" @click="start">Play Again!</button>
+      <button class="btn" @click="start">Play Again!</button>      
     </div>
   </div>
-  </div>
+ 
 </template>
 
 <script>
+
+
 import Flower from "./Flower.vue";
 import ScoreBoard from "./ScoreBoard.vue";
 export default {
@@ -52,7 +54,7 @@ export default {
     speed: {
       type: Number,
       required: false,
-      default: 5
+      default: 10
     },
     duration: {
       type: Number,
@@ -70,7 +72,8 @@ export default {
       timerId: null,
       flowerId: 0,
       gameStarted: false,
-      flowerTimerId: null
+      flowerTimerId: null,
+      audioPlay: false
     };
   },
   methods: {
@@ -127,6 +130,8 @@ export default {
         
       }, this.duration * 1000);
       this.addFlower();
+   
+     
     },
     endGame() {
       clearInterval(this.timerId);
@@ -135,15 +140,30 @@ export default {
       this.flowers = 0;     
     },
     removeFlower(flower, userFailedtoClick = false) {
+      let audio = new Audio('https://opengameart.org/sites/default/files/montageAudio-20120408%40142844.mp3')
       if (userFailedtoClick !== true) {
-        this.score += 400;
+         this.score += 400;       
+         console.log(this.speed);
+         audio.play();
+         this.audioPlay = true;         
       }
+      // ToDo: Add Levels
       // const index = this.flowers.findIndex(f => f.id === flower.id)
       this.flowers.splice(flower, 1);
+      if(this.score === 1200) {
+        this.speed = 9;
+      } else if(this.score === 2200) {
+        this.speed = 8;
+      } else if(this.score === 3800){
+        this.speed = 7;
+      } else if(this.score === 4800){
+        this.speed = 6;
+      }
     }
+   
   },
   computed: {
-    //     flowers () {
+    //     flowers () {`
     //       return Object.values(this.liveFlowers);
     //     }
     noOfGamesPlayed: function() {
@@ -155,6 +175,7 @@ export default {
 
       console.log("hey");
     }
+
   }
 };
 </script>
