@@ -1,4 +1,4 @@
-# game-test
+# Build Set Up:
 
 ## Project setup
 ```
