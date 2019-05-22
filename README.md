@@ -2,7 +2,9 @@
 
 This is the game in VueJS where when the user clicks on the start button, you will see flowers randomly appearing on the screen. If you click on the flower you get the point and flowers which are not clicked are disappeared. The user can see the score and keep the count of it.
 
+### Live Demo: (https://codepen.io/iamlexieonearth/full/QYNmEa)
 
+   <img src= "https://res.cloudinary.com/dv3lue3qa/image/upload/v1558499265/screenshot.png">
 # Build Set Up:
 
 ## Project setup
