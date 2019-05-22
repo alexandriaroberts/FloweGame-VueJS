@@ -5,6 +5,7 @@ This is the game in VueJS where when the user clicks on the start button, you wi
 ### Live Demo: (https://codepen.io/iamlexieonearth/full/QYNmEa)
 
    <img src= "https://res.cloudinary.com/dv3lue3qa/image/upload/v1558499265/screenshot.png">
+   
 # Build Set Up:
 
 ## Project setup
