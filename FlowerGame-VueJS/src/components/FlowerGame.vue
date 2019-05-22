@@ -73,7 +73,8 @@ export default {
       flowerId: 0,
       gameStarted: false,
       flowerTimerId: null,
-      audioPlay: false
+      audioPlay: false,
+      levels: [0, 400, 1600]
     };
   },
   methods: {
@@ -129,9 +130,7 @@ export default {
           this.endGame();
         
       }, this.duration * 1000);
-      this.addFlower();
-   
-     
+      this.addFlower();     
     },
     endGame() {
       clearInterval(this.timerId);
@@ -145,37 +144,16 @@ export default {
          this.score += 400;       
          console.log(this.speed);
          audio.play();
-         this.audioPlay = true;         
+         this.audioPlay = true;
+                
       }
-      // ToDo: Add Levels
-      // const index = this.flowers.findIndex(f => f.id === flower.id)
-      this.flowers.splice(flower, 1);
-      if(this.score === 1200) {
-        this.speed = 9;
-      } else if(this.score === 2200) {
-        this.speed = 8;
-      } else if(this.score === 3800){
-        this.speed = 7;
-      } else if(this.score === 4800){
-        this.speed = 6;
-      }
+       // const index = this.flowers.findIndex(f => f.id === flower.id)
+      this.flowers.splice(flower, 1);      
+    },
+    addLevels() {
+        // ToDo: Working on adding levels
     }
    
-  },
-  computed: {
-    //     flowers () {`
-    //       return Object.values(this.liveFlowers);
-    //     }
-    noOfGamesPlayed: function() {
-      if (this.start()) {
-        return true;
-      } else {
-        return false;
-      }
-
-      console.log("hey");
-    }
-
   }
 };
 </script>
